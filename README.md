@@ -1,21 +1,19 @@
 #include<stdio.h>
 int main(){
-	int K1=0,K2=0;//我就不按题给的100 arries 定义数组！！ 
-	int m1[K1][2];
-	int m2[K2][2];
+	int K1=0,K2=0;//我就不按题给的100 arries 定义数组！！//根据二更，现在看来不按不行了。。。 
+	int m1[100][2];
+	int m2[100][2];
 	int power,coefficient;
-	scanf("%n %n",&power,&coefficient);
- 	do{
+ 	do{ 
+	 	scanf("%d %d",&power,&coefficient);
  		m1[K1][0]=power;
  		m1[K1][1]=coefficient;
- 		scanf("%n %n",&power,&coefficient);
  		K1++;
-	}while(power!=0);//最后一行一定是零次，零次一定是最后一行 
-	scanf("%n %n",&power,&coefficient);
+	}while(power!=0);//最后一行一定是零次，零次一定是最后一行 	
  	do{
- 		m1[K2][0]=power;
- 		m1[K2][1]=coefficient;
- 		scanf("%n %n",&power,&coefficient);
+ 		scanf("%d %d",&power,&coefficient);
+ 		m2[K2][0]=power;
+ 		m2[K2][1]=coefficient;
  		K2++;
 	}while(power!=0);
 	int sum[K1+K2][2];//所需肯定小于K1+K2，在后面单独确定好sum的行数太麻烦 
@@ -43,23 +41,35 @@ int main(){
 		//begin to output			    
 	}							//最后一行一定是零次，改！ 
 	for(int k=0;k<count-2;k++){   //这一个循环把后两个可能出现的特殊的情况排除在外 
-		printf("%dx%d+",sum[k][1],sum[k][0]);//考虑对负数系数的输出 ！！ 
+		if(sum[k+1][1]>0) 
+		printf("%dx%d+",sum[k][1],sum[k][0]);//考虑对非正系数的输出 ！！ 
+		else 
+		printf("%dx%d",sum[k][1],sum[k][0]);
 	}
-	if(sum[count-2][0]==1)
-	printf("%dx+",sum[count-2][1]);
-	else
-	printf("%dx%d+",sum[count-2][1],sum[count-2][0]);
+	if(sum[count-2][0]==1){
+		if(sum[count-1][1]>0) 
+		printf("%dx+",sum[count-2][1]);//考虑对非正系数的输出 ！！ 
+		else
+		printf("%dx",sum[count-2][1])
+	}	
+	else{
+		if(sum[count-1][1]>0) 
+		printf("%dx%d+",sum[count-2][1],sum[count-2][0]);//考虑对非正系数的输出 ！！ 
+		else 
+		printf("%dx%d",sum[count-2][1],sum[count-2][0]);
+	}
+	if(sum[count-1][1]!=0)
 	printf("%d",sum[count-1][1]);
 	return 0;	     	
 } 
 void input(int m[][2]){
 	int power,coefficient;
-	scanf("%n %n",&power,&coefficient);
+	scanf("%d %d",&power,&coefficient);
  	int i=0;
  	while(power!=0){
  		m[i][0]=power;
  		m[i][1]=coefficient;
- 		scanf("%n %n",&power,&coefficient);
+ 		scanf("%d %d",&power,&coefficient);
  		i++;
 	}
 }
