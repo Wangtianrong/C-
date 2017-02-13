@@ -1,8 +1,8 @@
 #include<stdio.h>
 int main(){
 	int K1=0,K2=0;//我就不按题给的100 arries 定义数组！！//根据二更，现在看来不按不行了。。。 
-	int m1[100][2];
-	int m2[100][2];
+	int m1[100][2]={{0,0},};
+	int m2[100][2]={{0,0},};
 	int power,coefficient;
  	do{ 
 	 	scanf("%d %d",&power,&coefficient);
@@ -24,15 +24,15 @@ int main(){
 	max=m2[0][0];
 	for(int n=max;n>=0;n--){//对于同一n，下面的两个for循环是相容性可进入的，但各自最多只能进入一次 
 		int ret=0;
-    	for(i1=sizeof(m1)/sizeof(m1[0][0]);i1>=0;i1--){
+    	for(i1=0;i1<100;i1++){
     		if(m1[i1][0]==n){
     			sum[count][0]=n;sum[count][1]+=m1[i1][1];
     			ret=1;
 			}
 		}
-		for(i1=sizeof(m2)/sizeof(m2[0][0]);i2>=0;i2--){
-    		if(m1[i2][0]==n){
-    			sum[count][0]=n;sum[count][1]+=m1[i2][1];
+		for(i2=0;i2<100;i2++){
+    		if(m2[i2][0]==n){
+    			sum[count][0]=n;sum[count][1]+=m2[i2][1];
     			ret=1;
 			}
 		}//等会可以在这里测试一下ret 
@@ -50,7 +50,7 @@ int main(){
 		if(sum[count-1][1]>0) 
 		printf("%dx+",sum[count-2][1]);//考虑对非正系数的输出 ！！ 
 		else
-		printf("%dx",sum[count-2][1])
+		printf("%dx",sum[count-2][1]);
 	}	
 	else{
 		if(sum[count-1][1]>0) 
@@ -62,7 +62,7 @@ int main(){
 	printf("%d",sum[count-1][1]);
 	return 0;	     	
 } 
-void input(int m[][2]){
+/*void input(int m[][2]){
 	int power,coefficient;
 	scanf("%d %d",&power,&coefficient);
  	int i=0;
@@ -72,4 +72,4 @@ void input(int m[][2]){
  		scanf("%d %d",&power,&coefficient);
  		i++;
 	}
-}
+}*/
