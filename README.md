@@ -40,26 +40,40 @@ int main(){
 		count++;
 		//begin to output			    
 	}							//最后一行一定是零次，改！ 
-	for(int k=0;k<count-2;k++){   //这一个循环把后两个可能出现的特殊的情况排除在外 
-		if(sum[k+1][1]>0) 
-		printf("%dx%d+",sum[k][1],sum[k][0]);//考虑对非正系数的输出 ！！ 
-		else 
-		printf("%dx%d",sum[k][1],sum[k][0]);
+	if(count==1){
+		if(sum[count-1][1]!=0)
+		printf("%d",sum[count-1][1]);
+		return 0;
 	}
-	if(sum[count-2][0]==1){
-		if(sum[count-1][1]>0) 
-		printf("%dx+",sum[count-2][1]);//考虑对非正系数的输出 ！！ 
-		else
-		printf("%dx",sum[count-2][1]);
-	}	
+	/*在上面补充数组位数是一位的情况,即count=1的情况*/ 
 	else{
-		if(sum[count-1][1]>0) 
-		printf("%dx%d+",sum[count-2][1],sum[count-2][0]);//考虑对非正系数的输出 ！！ 
-		else 
-		printf("%dx%d",sum[count-2][1],sum[count-2][0]);
-	}
-	if(sum[count-1][1]!=0)
-	printf("%d",sum[count-1][1]);
+		for(int k=0;k<count-2;k++){   //这一个循环把后两个可能出现的特殊的情况排除在外 
+			if(sum[k][1]!=0){	 //考虑系数为零的项的输出 
+				if(sum[k+1][1]>0) 
+				printf("%dx%d+",sum[k][1],sum[k][0]);//考虑对后一项的非正系数的输出 ！！ 
+				else 
+				printf("%dx%d",sum[k][1],sum[k][0]);
+			}
+		}
+		if(sum[count-2][0]==1){
+			if(sum[count-2][1]!=0){  //考虑对该项为零的输出 
+				if(sum[count-1][1]>0) 
+				printf("%dx+",sum[count-2][1]);//考虑对后一项的非正系数的输出 ！！ 
+				else
+				printf("%dx",sum[count-2][1]);
+			}	
+		}	
+		else{
+			if(sum[count-2][1]!=0){
+				if(sum[count-1][1]>0) 
+				printf("%dx%d+",sum[count-2][1],sum[count-2][0]);//考虑对后一项的非正系数的输出 ！！ 
+				else 
+				printf("%dx%d",sum[count-2][1],sum[count-2][0]);
+			} 	
+		}
+		if(sum[count-1][1]!=0)
+		printf("%d",sum[count-1][1]);
+		}
 	return 0;	     	
 } 
 /*void input(int m[][2]){
