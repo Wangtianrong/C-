@@ -16,7 +16,7 @@ int main(){
  		m2[K2][1]=coefficient;
  		K2++;
 	}while(power!=0);
-	int sum[K1+K2][2];//所需肯定小于K1+K2，在后面单独确定好sum的行数太麻烦 
+	int sum[100][2]={{0,0},};//所需肯定小于K1+K2，在后面单独确定好sum的行数太麻烦 
     int i1,i2,max,count=0;
     if(m1[0][0]>=m2[0][0])
 	max=m1[0][0];
@@ -54,6 +54,10 @@ int main(){
 				else 
 				printf("%dx%d",sum[k][1],sum[k][0]);
 			}
+			else{
+				if(sum[k+1][1]>0) 
+				printf("+");//是零的情况考虑对后一项的非正系数的输出 ！！ 
+			}
 		}
 		if(sum[count-2][0]==1){
 			if(sum[count-2][1]!=0){  //考虑对该项为零的输出 
@@ -61,6 +65,10 @@ int main(){
 				printf("%dx+",sum[count-2][1]);//考虑对后一项的非正系数的输出 ！！ 
 				else
 				printf("%dx",sum[count-2][1]);
+			}
+			else{
+				if(sum[count-1][1]>0) 
+				printf("+");//考虑对后一项的非正系数的输出 ！！ 
 			}	
 		}	
 		else{
@@ -69,7 +77,11 @@ int main(){
 				printf("%dx%d+",sum[count-2][1],sum[count-2][0]);//考虑对后一项的非正系数的输出 ！！ 
 				else 
 				printf("%dx%d",sum[count-2][1],sum[count-2][0]);
-			} 	
+			} 
+			else{
+				if(sum[count-1][1]>0) 
+				printf("+");
+			}	
 		}
 		if(sum[count-1][1]!=0)
 		printf("%d",sum[count-1][1]);
