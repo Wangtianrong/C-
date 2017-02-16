@@ -123,4 +123,4 @@ int main(){
  		scanf("%d %d",&power,&coefficient);
  		i++;
 	}
-}*/
+}*///待改进
